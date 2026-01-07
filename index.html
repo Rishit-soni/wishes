@@ -65,9 +65,6 @@
         user-select: none;
         transition: transform 0.1s;
       }
-      .main-heart-btn:active {
-        transform: scale(0.85);
-      }
 
       .counter-box {
         background: var(--primary-pink);
@@ -104,6 +101,7 @@
         position: absolute;
         width: 90%;
         text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        line-height: 1.2;
       }
 
       /* --- PHASE 3: MAIN CONTENT --- */
@@ -115,14 +113,77 @@
 
       .hero-header {
         text-align: center;
-        padding: 100px 20px 60px;
+        padding: 60px 20px 40px;
       }
+
+      /* VIBRANT MODERN NAME STYLE */
       .hero-header h1 {
         font-family: "Great Vibes", cursive;
-        font-size: clamp(3.5rem, 12vw, 6.5rem);
-        background: linear-gradient(to bottom, var(--deep-rose), var(--gold));
+        font-size: clamp(3.5rem, 14vw, 7rem);
+        background: linear-gradient(
+          to right,
+          var(--deep-rose) 20%,
+          var(--gold) 40%,
+          #ff8fa3 60%,
+          var(--deep-rose) 80%
+        );
+        background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        animation: shine 3s linear infinite;
+        filter: drop-shadow(2px 4px 10px rgba(194, 30, 86, 0.2));
+        margin-bottom: 20px;
+      }
+
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      /* GRAND CALENDAR */
+      .calendar-container {
+        width: 160px;
+        height: 180px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        margin: 30px auto;
+        overflow: hidden;
+        border: 1px solid #eee;
+        animation: calFloat 4s ease-in-out infinite;
+        transform: perspective(1000px) rotateX(10deg);
+      }
+
+      @keyframes calFloat {
+        0%,
+        100% {
+          transform: perspective(1000px) rotateX(10deg) translateY(0);
+        }
+        50% {
+          transform: perspective(1000px) rotateX(10deg) translateY(-10px);
+        }
+      }
+
+      .cal-top {
+        background: var(--deep-rose);
+        color: white;
+        padding: 10px;
+        font-weight: 900;
+        letter-spacing: 2px;
+      }
+      .cal-mid {
+        font-size: 4rem;
+        font-weight: 900;
+        color: #222;
+        line-height: 1;
+        padding: 10px 0;
+      }
+      .cal-bot {
+        font-weight: 700;
+        color: var(--gold);
+        font-size: 1.2rem;
+        padding-bottom: 10px;
       }
 
       /* 309 WISHES WALL */
@@ -130,7 +191,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 12px;
         padding: 60px 20px;
         background: white;
         margin: 40px 0;
@@ -141,7 +202,7 @@
         animation: float 3s infinite ease-in-out;
       }
 
-      /* PRO JOURNEY CARDS */
+      /* PRO JOURNEY SECTION */
       .journey-container {
         max-width: 1100px;
         margin: 0 auto;
@@ -154,8 +215,8 @@
         border-radius: 30px;
         overflow: hidden;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+        min-height: 480px;
         border: 1px solid #f0f0f0;
-        min-height: 450px;
       }
       .journey-card:nth-child(even) {
         flex-direction: row-reverse;
@@ -163,7 +224,6 @@
 
       .journey-visual {
         flex: 1.3;
-        position: relative;
         overflow: hidden;
       }
       .journey-visual img {
@@ -183,38 +243,42 @@
         flex-direction: column;
         justify-content: center;
       }
-      .journey-info h4 {
-        color: var(--gold);
-        letter-spacing: 3px;
-        font-weight: 800;
-        margin-bottom: 10px;
-      }
-      .journey-info h3 {
-        font-family: "Playfair Display", serif;
-        font-size: 2.5rem;
-        color: var(--deep-rose);
-        margin-bottom: 20px;
+      .date-badge {
+        display: inline-block;
+        background: var(--primary-pink);
+        color: white;
+        padding: 8px 25px;
+        border-radius: 50px;
+        font-weight: 900;
+        margin-bottom: 15px;
+        border: 2px solid white;
+        box-shadow: 0 5px 15px rgba(255, 63, 108, 0.2);
+        width: fit-content;
       }
 
-      /* GALLERY SECTION */
-      .gallery-title {
+      /* 12 PHOTO GALLERY */
+      .glimpses-title {
         text-align: center;
-        font-family: "Parisienne";
-        font-size: 4rem;
-        margin-top: 80px;
-        color: var(--deep-rose);
+        font-family: "Great Vibes", cursive;
+        font-size: 4.5rem;
+        background: linear-gradient(45deg, var(--deep-rose), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 80px 0 40px;
       }
+
       .gallery-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 40px;
-        padding: 50px;
-        max-width: 1300px;
+        gap: 30px;
+        padding: 20px;
+        max-width: 1400px;
         margin: 0 auto;
       }
+
       .polaroid-frame {
         background: white;
-        padding: 15px 15px 70px 15px;
+        padding: 15px 15px 80px 15px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         transform: rotate(var(--r));
         transition: 0.4s;
@@ -226,18 +290,44 @@
       }
       .polaroid-frame img {
         width: 100%;
-        height: 350px;
+        height: 380px;
         object-fit: cover;
       }
       .polaroid-frame .caption {
         position: absolute;
         bottom: 20px;
-        left: 0;
         width: 100%;
+        left: 0;
         text-align: center;
         font-family: "Sacramento", cursive;
-        font-size: 2rem;
-        color: #444;
+        font-size: 2.2rem;
+      }
+
+      /* CAREER SUCCESS SECTION */
+      .career-section {
+        background: linear-gradient(to right, #fff, #fff1f2, #fff);
+        padding: 100px 20px;
+        text-align: center;
+      }
+      .success-card {
+        max-width: 850px;
+        margin: 0 auto;
+        background: white;
+        padding: 50px;
+        border-radius: 40px;
+        box-shadow: 0 30px 60px rgba(194, 30, 86, 0.1);
+      }
+      .success-card h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        color: var(--deep-rose);
+        margin-bottom: 25px;
+      }
+      .success-card p {
+        font-size: 1.3rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
       }
 
       /* --- ANIMATIONS --- */
@@ -299,7 +389,6 @@
         }
       }
 
-      /* MOBILE FIXES */
       @media (max-width: 768px) {
         .journey-card,
         .journey-card:nth-child(even) {
@@ -314,10 +403,13 @@
           text-align: center;
         }
         .hero-header h1 {
-          font-size: 3.5rem;
+          font-size: 3.8rem;
         }
-        .gallery-grid {
-          padding: 20px;
+        .party-msg {
+          font-size: clamp(2rem, 10vw, 3.5rem) !important;
+        }
+        .success-card {
+          padding: 30px;
         }
       }
     </style>
@@ -342,39 +434,37 @@
     </div>
 
     <div id="party-overlay">
-      <h1 id="msg-1" class="party-msg" style="font-size: 4rem">
+      <h1 id="msg-1" class="party-msg" style="font-size: 3.5rem">
         FINALLY, IT'S 9th JAN 2026...
       </h1>
-      <h1 id="msg-2" class="party-msg" style="font-size: 6rem">
+      <h1 id="msg-2" class="party-msg" style="font-size: 5.5rem">
         HAPPY BIRTHDAY<br />DEVANSHI! 🎂✨
       </h1>
     </div>
 
     <div id="main-content">
       <div class="hero-header">
-        <h1>Rishit & Devanshi</h1>
+        <h1>Devanshi</h1>
+
+        <div class="calendar-container">
+          <div class="cal-top">JANUARY</div>
+          <div class="cal-mid">9</div>
+          <div class="cal-bot">2026</div>
+        </div>
+
         <p
           style="
             letter-spacing: 8px;
             color: var(--gold);
             font-weight: 900;
-            margin-top: -10px;
+            margin-top: 10px;
+            text-transform: uppercase;
           "
         >
-          HAPPY 23rd BIRTHDAY LOVE
+          Happy 23rd Birthday My Love
         </p>
       </div>
 
-      <h2
-        style="
-          text-align: center;
-          font-family: 'Parisienne';
-          font-size: 3.5rem;
-          color: var(--deep-rose);
-        "
-      >
-        309 Birthday Wishes 🌹
-      </h2>
       <div class="wishes-wall" id="cloud-wall"></div>
 
       <h2
@@ -391,10 +481,10 @@
       <div class="journey-container">
         <div class="journey-card">
           <div class="journey-visual">
-            <img src="meeting.jpg" alt="The Family Meeting" />
+            <img src="meeting.jpg" alt="Meeting" />
           </div>
           <div class="journey-info">
-            <h4>1st JUNE 2025</h4>
+            <div class="date-badge">1st JUNE 2025</div>
             <h3>The Family Meeting</h3>
             <p>
               The day two beautiful families became one. The foundation of our
@@ -404,11 +494,9 @@
         </div>
 
         <div class="journey-card">
-          <div class="journey-visual">
-            <img src="bhet.jpg" alt="Bhet Padhravi" />
-          </div>
+          <div class="journey-visual"><img src="bhet.jpg" alt="Bhet" /></div>
           <div class="journey-info">
-            <h4>13th JUNE 2025</h4>
+            <div class="date-badge">13th JUNE 2025</div>
             <h3>Bhet Padhravi</h3>
             <p>
               Sealing our destiny with traditional blessings and heart-filled
@@ -419,10 +507,10 @@
 
         <div class="journey-card">
           <div class="journey-visual">
-            <img src="engagement.jpg" alt="Our Engagement" />
+            <img src="engagement.jpg" alt="Engagement" />
           </div>
           <div class="journey-info">
-            <h4>3rd JULY 2025</h4>
+            <div class="date-badge">3rd JULY 2025</div>
             <h3>Our Engagement</h3>
             <p>
               The moment we promised our souls to each other. A diamond ring and
@@ -432,40 +520,80 @@
         </div>
       </div>
 
-      <h2 class="gallery-title">Lovely Glimpses 📸</h2>
+      <h2 class="glimpses-title">Lovely Glimpses</h2>
       <div class="gallery-grid">
         <div class="polaroid-frame" style="--r: -3deg">
-          <img src="pic1.jpg" />
-          <div class="caption">My Birthday Girl 🎂</div>
+          <img src="IMG_20260107_203945.jpg" />
+          <div class="caption">Birthday Girl 🎂</div>
         </div>
         <div class="polaroid-frame" style="--r: 2deg">
-          <img src="pic2.jpg" />
+          <img src="IMG20250809140419.jpg" />
           <div class="caption">Purest Smile 😊</div>
         </div>
         <div class="polaroid-frame" style="--r: -4deg">
-          <img src="pic3.jpg" />
+          <img src="IMG_20260107_203750.jpg" />
           <div class="caption">Forever Yours ❤️</div>
         </div>
         <div class="polaroid-frame" style="--r: 3deg">
-          <img src="pic4.jpg" />
-          <div class="caption">Lifetime Memories 🕊️</div>
+          <img src="IMG_20260107_203008.jpg" />
+          <div class="caption">Memories 🕊️</div>
         </div>
         <div class="polaroid-frame" style="--r: -2deg">
-          <img src="pic5.jpg" />
-          <div class="caption">My Whole World 🌎</div>
+          <img src="world.jpg" />
+          <div class="caption">Whole World 🌎</div>
         </div>
         <div class="polaroid-frame" style="--r: 4deg">
-          <img src="pic6.jpg" />
+          <img src="IMG20250810095659.jpg" />
           <div class="caption">Pure Magic ✨</div>
         </div>
+        <div class="polaroid-frame" style="--r: -1deg">
+          <img src="IMG_20260108_002843.jpg" />
+          <div class="caption">Our Dates ☕</div>
+        </div>
+        <div class="polaroid-frame" style="--r: 3deg">
+          <img src="IMG20250927003431.jpg" />
+          <div class="caption">Togetherness 💖</div>
+        </div>
+        <div class="polaroid-frame" style="--r: -4deg">
+          <img src="IMG_20251109_194624.jpg" />
+          <div class="caption">True Love 🌹</div>
+        </div>
+        <div class="polaroid-frame" style="--r: 2deg">
+          <img src="IMG_20260108_004720.jpg" />
+          <div class="caption">Soulmate ✨</div>
+        </div>
+        <div class="polaroid-frame" style="--r: -3deg">
+          <img src="IMG20250817153027.jpg" />
+          <div class="caption">My Queen 👑</div>
+        </div>
+        <div class="polaroid-frame" style="--r: 1deg">
+          <img src="IMG_20260108_003831.jpg" />
+          <div class="caption">Perfect Pair 👫</div>
+        </div>
       </div>
+
+      <section class="career-section">
+        <div class="success-card">
+          <h2>Wishes for Your Future 🚀</h2>
+          <p>
+            Devanshi, on your 23rd birthday, I wish you a magnificent career
+            full of growth and success. I believe in every one of your dreams,
+            and I know you have the strength to achieve them all! 🎯✨
+          </p>
+          <p>
+            In every situation, through every high and low, I will be right here
+            by your side 🤝. May you shine brighter than the stars and reach the
+            heights you deserve. 💼📈
+          </p>
+        </div>
+      </section>
 
       <footer
         style="
           text-align: center;
           padding: 120px 20px;
           font-family: 'Parisienne';
-          font-size: 2.8rem;
+          font-size: 3rem;
           color: var(--deep-rose);
         "
       >
@@ -503,7 +631,6 @@
         "Happy Birthday, Devanshi! I love you! ❤️",
       ];
 
-      // RESTORE: Populate 309 Wishes
       const variations = [
         "Happy Birthday",
         "જન્મદિવસ મુબારક",
@@ -533,7 +660,6 @@
         wall.appendChild(span);
       }
 
-      // IMPROVED: Celebration Rain Engine
       function celebrateClick(e) {
         if (clicks >= target) return;
         clicks++;
@@ -542,11 +668,10 @@
           loveSentences[clicks - 1]
         }"`;
 
-        // Trigger full screen celebratory rain
-        for (let i = 0; i < 30; i++) {
+        // INTENSE CELEBRATION RAIN
+        for (let i = 0; i < 35; i++) {
           createParticle(e.clientX, e.clientY);
         }
-
         if (clicks === target) runGrandReveal();
       }
 
@@ -559,14 +684,11 @@
         p.style.left = x + "px";
         p.style.top = y + "px";
         p.style.fontSize = Math.random() * 30 + 15 + "px";
-
-        // Random rain direction
-        const destX = (Math.random() - 0.5) * window.innerWidth * 1.5;
-        const destY = (Math.random() - 0.5) * window.innerHeight * 1.5;
+        const destX = (Math.random() - 0.5) * window.innerWidth * 1.8;
+        const destY = (Math.random() - 0.5) * window.innerHeight * 1.8;
         p.style.setProperty("--x", destX + "px");
         p.style.setProperty("--y", destY + "px");
-        p.style.setProperty("--d", Math.random() * 2 + 1 + "s");
-
+        p.style.setProperty("--d", Math.random() * 2 + 1.2 + "s");
         document.body.appendChild(p);
         setTimeout(() => p.remove(), 3000);
       }
@@ -574,21 +696,17 @@
       function runGrandReveal() {
         const landing = document.getElementById("landing-page");
         landing.style.transform = "translateY(-100%)";
-
         setTimeout(() => {
           landing.style.display = "none";
           const overlay = document.getElementById("party-overlay");
           overlay.style.display = "flex";
-
           const m1 = document.getElementById("msg-1");
           m1.classList.add("pop-anim");
-
           setTimeout(() => {
             m1.style.display = "none";
             const m2 = document.getElementById("msg-2");
             m2.style.display = "block";
             m2.classList.add("pop-anim");
-
             setTimeout(() => {
               overlay.style.opacity = "0";
               setTimeout(() => {
