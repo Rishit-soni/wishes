@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devanshi's Grand 23rd Birthday | 9th Jan 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Parisienne&family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Pacifico&family=Sacramento&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-pink: #ff3f6c;
+        --deep-rose: #c21e56;
+        --gold: #d4af37;
+        --cream: #fffaf0;
+        --glass: rgba(255, 255, 255, 0.7);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: var(--cream);
+        color: #333;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      /* --- PHASE 1: LANDING --- */
+      #landing-page {
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: radial-gradient(circle, #fff 0%, #ffeef2 100%);
+        transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+        padding: 20px;
+      }
+
+      #quote-display {
+        font-family: "Parisienne", cursive;
+        font-size: 2rem;
+        color: var(--deep-rose);
+        min-height: 80px;
+        margin-bottom: 30px;
+        max-width: 800px;
+        padding: 0 20px;
+      }
+
+      .main-heart-btn {
+        font-size: clamp(100px, 25vw, 160px);
+        cursor: pointer;
+        filter: drop-shadow(0 0 30px rgba(255, 63, 108, 0.4));
+        animation: pulse 1.5s infinite;
+        user-select: none;
+        transition: transform 0.1s;
+      }
+      .main-heart-btn:active {
+        transform: scale(0.85);
+      }
+
+      .counter-box {
+        background: var(--primary-pink);
+        color: white;
+        padding: 15px 45px;
+        border-radius: 50px;
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-top: 30px;
+        box-shadow: 0 10px 25px rgba(255, 63, 108, 0.4);
+      }
+
+      /* --- PHASE 2: PARTY OVERLAY --- */
+      #party-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+        z-index: 3000;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+      }
+
+      .party-msg {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        opacity: 0;
+        position: absolute;
+        width: 90%;
+        text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- PHASE 3: MAIN CONTENT --- */
+      #main-content {
+        display: none;
+        opacity: 0;
+        transition: opacity 2s;
+      }
+
+      .hero-header {
+        text-align: center;
+        padding: 100px 20px 60px;
+      }
+      .hero-header h1 {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(3.5rem, 12vw, 6.5rem);
+        background: linear-gradient(to bottom, var(--deep-rose), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* 309 WISHES WALL */
+      .wishes-wall {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 60px 20px;
+        background: white;
+        margin: 40px 0;
+        box-shadow: inset 0 0 50px rgba(255, 63, 108, 0.05);
+      }
+      .wish-cloud-item {
+        display: inline-block;
+        animation: float 3s infinite ease-in-out;
+      }
+
+      /* PRO JOURNEY CARDS */
+      .journey-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .journey-card {
+        display: flex;
+        background: white;
+        margin-bottom: 60px;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f0f0f0;
+        min-height: 450px;
+      }
+      .journey-card:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .journey-visual {
+        flex: 1.3;
+        position: relative;
+        overflow: hidden;
+      }
+      .journey-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+      .journey-visual:hover img {
+        transform: scale(1.08);
+      }
+
+      .journey-info {
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .journey-info h4 {
+        color: var(--gold);
+        letter-spacing: 3px;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .journey-info h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        color: var(--deep-rose);
+        margin-bottom: 20px;
+      }
+
+      /* GALLERY SECTION */
+      .gallery-title {
+        text-align: center;
+        font-family: "Parisienne";
+        font-size: 4rem;
+        margin-top: 80px;
+        color: var(--deep-rose);
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        padding: 50px;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .polaroid-frame {
+        background: white;
+        padding: 15px 15px 70px 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        transform: rotate(var(--r));
+        transition: 0.4s;
+        position: relative;
+      }
+      .polaroid-frame:hover {
+        transform: rotate(0deg) scale(1.05);
+        z-index: 10;
+      }
+      .polaroid-frame img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+      }
+      .polaroid-frame .caption {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-family: "Sacramento", cursive;
+        font-size: 2rem;
+        color: #444;
+      }
+
+      /* --- ANIMATIONS --- */
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .celeb-particle {
+        position: fixed;
+        pointer-events: none;
+        z-index: 5000;
+        animation: celebRain var(--d) ease-out forwards;
+      }
+      @keyframes celebRain {
+        0% {
+          transform: translate(0, 0) scale(1) rotate(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--x), var(--y)) scale(0) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      .pop-anim {
+        animation: popScale 4s forwards;
+      }
+      @keyframes popScale {
+        0% {
+          opacity: 0;
+          transform: scale(0.3);
+          filter: blur(10px);
+        }
+        20%,
+        80% {
+          opacity: 1;
+          transform: scale(1);
+          filter: blur(0);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.8);
+          filter: blur(20px);
+        }
+      }
+
+      /* MOBILE FIXES */
+      @media (max-width: 768px) {
+        .journey-card,
+        .journey-card:nth-child(even) {
+          flex-direction: column;
+          min-height: auto;
+        }
+        .journey-visual {
+          height: 300px;
+        }
+        .journey-info {
+          padding: 30px;
+          text-align: center;
+        }
+        .hero-header h1 {
+          font-size: 3.5rem;
+        }
+        .gallery-grid {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="landing-page">
+      <div id="quote-display">
+        "Devanshi, click the heart to unlock 23 years of love..."
+      </div>
+      <div class="main-heart-btn" onclick="celebrateClick(event)">💖</div>
+      <div class="counter-box"><span id="click-val">0</span> / 23 Clicks</div>
+      <p
+        style="
+          margin-top: 30px;
+          font-weight: 800;
+          color: var(--deep-rose);
+          letter-spacing: 2px;
+        "
+      >
+        A SPECIAL JOURNEY FOR MY FIANCÉ
+      </p>
+    </div>
+
+    <div id="party-overlay">
+      <h1 id="msg-1" class="party-msg" style="font-size: 4rem">
+        FINALLY, IT'S 9th JAN 2026...
+      </h1>
+      <h1 id="msg-2" class="party-msg" style="font-size: 6rem">
+        HAPPY BIRTHDAY<br />DEVANSHI! 🎂✨
+      </h1>
+    </div>
+
+    <div id="main-content">
+      <div class="hero-header">
+        <h1>Rishit & Devanshi</h1>
+        <p
+          style="
+            letter-spacing: 8px;
+            color: var(--gold);
+            font-weight: 900;
+            margin-top: -10px;
+          "
+        >
+          HAPPY 23rd BIRTHDAY LOVE
+        </p>
+      </div>
+
+      <h2
+        style="
+          text-align: center;
+          font-family: 'Parisienne';
+          font-size: 3.5rem;
+          color: var(--deep-rose);
+        "
+      >
+        309 Birthday Wishes 🌹
+      </h2>
+      <div class="wishes-wall" id="cloud-wall"></div>
+
+      <h2
+        style="
+          text-align: center;
+          font-family: 'Playfair Display';
+          font-size: 3rem;
+          margin: 80px 0 40px;
+          color: var(--deep-rose);
+        "
+      >
+        Our Journey 🕊️
+      </h2>
+      <div class="journey-container">
+        <div class="journey-card">
+          <div class="journey-visual">
+            <img src="meeting.jpg" alt="The Family Meeting" />
+          </div>
+          <div class="journey-info">
+            <h4>1st JUNE 2025</h4>
+            <h3>The Family Meeting</h3>
+            <p>
+              The day two beautiful families became one. The foundation of our
+              forever story was built here. 🏡💖
+            </p>
+          </div>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-visual">
+            <img src="bhet.jpg" alt="Bhet Padhravi" />
+          </div>
+          <div class="journey-info">
+            <h4>13th JUNE 2025</h4>
+            <h3>Bhet Padhravi</h3>
+            <p>
+              Sealing our destiny with traditional blessings and heart-filled
+              prayers. 🙏✨
+            </p>
+          </div>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-visual">
+            <img src="engagement.jpg" alt="Our Engagement" />
+          </div>
+          <div class="journey-info">
+            <h4>3rd JULY 2025</h4>
+            <h3>Our Engagement</h3>
+            <p>
+              The moment we promised our souls to each other. A diamond ring and
+              a lifetime of commitment. 💍♾️
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="gallery-title">Lovely Glimpses 📸</h2>
+      <div class="gallery-grid">
+        <div class="polaroid-frame" style="--r: -3deg">
+          <img src="pic1.jpg" />
+          <div class="caption">My Birthday Girl 🎂</div>
+        </div>
+        <div class="polaroid-frame" style="--r: 2deg">
+          <img src="pic2.jpg" />
+          <div class="caption">Purest Smile 😊</div>
+        </div>
+        <div class="polaroid-frame" style="--r: -4deg">
+          <img src="pic3.jpg" />
+          <div class="caption">Forever Yours ❤️</div>
+        </div>
+        <div class="polaroid-frame" style="--r: 3deg">
+          <img src="pic4.jpg" />
+          <div class="caption">Lifetime Memories 🕊️</div>
+        </div>
+        <div class="polaroid-frame" style="--r: -2deg">
+          <img src="pic5.jpg" />
+          <div class="caption">My Whole World 🌎</div>
+        </div>
+        <div class="polaroid-frame" style="--r: 4deg">
+          <img src="pic6.jpg" />
+          <div class="caption">Pure Magic ✨</div>
+        </div>
+      </div>
+
+      <footer
+        style="
+          text-align: center;
+          padding: 120px 20px;
+          font-family: 'Parisienne';
+          font-size: 2.8rem;
+          color: var(--deep-rose);
+        "
+      >
+        Forever & Always, Your Rishit.
+      </footer>
+    </div>
+
+    <script>
+      let clicks = 0;
+      const target = 23;
+
+      const loveSentences = [
+        "You are the melody to my heart's song. ❤️",
+        "Every second with you is a blessing. ✨",
+        "To my beautiful fiancé, Happy Birthday! 💍",
+        "You make my world infinitely brighter. ☀️",
+        "Your smile is my favorite destination. 😊",
+        "I love you more than words can express. 🌹",
+        "Cheers to 23 years of your wonderful life! 🥂",
+        "You are my best friend and my soulmate. 🕊️",
+        "Every dream I have includes you. 🌙",
+        "You are the magic in my everyday. ✨",
+        "I am so proud to be yours. 🤝",
+        "Your heart is my favorite place. 🏡",
+        "May your 23rd year be as sweet as you. 🍭",
+        "I cherish every laugh we share. 😂",
+        "You are my today and all my tomorrows. 🌅",
+        "To the woman of my dreams, I love you. 😍",
+        "You're pure elegance and grace. 🦢",
+        "Counting down to forever with you! ♾️",
+        "Thank you for being my better half. ❤️",
+        "You are my greatest achievement. 🏆",
+        "Almost there, my love! 🎉",
+        "One last click for the big surprise... 🎂",
+        "Happy Birthday, Devanshi! I love you! ❤️",
+      ];
+
+      // RESTORE: Populate 309 Wishes
+      const variations = [
+        "Happy Birthday",
+        "જન્મદિવસ મુબારક",
+        "HBD Devanshi",
+        "Stay Blessed",
+        "Keep Smiling",
+        "Love You",
+      ];
+      const fonts = [
+        "'Pacifico'",
+        "'Sacramento'",
+        "'Dancing Script'",
+        "'Montserrat'",
+      ];
+      const wall = document.getElementById("cloud-wall");
+      for (let i = 0; i < 309; i++) {
+        const span = document.createElement("span");
+        span.className = "wish-cloud-item";
+        span.innerText =
+          variations[i % variations.length] + (i % 3 === 0 ? " ❤️" : " ✨");
+        span.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+        span.style.color = ["#ff3f6c", "#c21e56", "#d4af37"][
+          Math.floor(Math.random() * 3)
+        ];
+        span.style.fontSize = Math.random() * 1.4 + 0.9 + "rem";
+        span.style.padding = "5px";
+        wall.appendChild(span);
+      }
+
+      // IMPROVED: Celebration Rain Engine
+      function celebrateClick(e) {
+        if (clicks >= target) return;
+        clicks++;
+        document.getElementById("click-val").innerText = clicks;
+        document.getElementById("quote-display").innerText = `"${
+          loveSentences[clicks - 1]
+        }"`;
+
+        // Trigger full screen celebratory rain
+        for (let i = 0; i < 30; i++) {
+          createParticle(e.clientX, e.clientY);
+        }
+
+        if (clicks === target) runGrandReveal();
+      }
+
+      function createParticle(x, y) {
+        const p = document.createElement("div");
+        p.className = "celeb-particle";
+        p.innerText = ["❤️", "💖", "✨", "🌸", "🎉", "🎈"][
+          Math.floor(Math.random() * 6)
+        ];
+        p.style.left = x + "px";
+        p.style.top = y + "px";
+        p.style.fontSize = Math.random() * 30 + 15 + "px";
+
+        // Random rain direction
+        const destX = (Math.random() - 0.5) * window.innerWidth * 1.5;
+        const destY = (Math.random() - 0.5) * window.innerHeight * 1.5;
+        p.style.setProperty("--x", destX + "px");
+        p.style.setProperty("--y", destY + "px");
+        p.style.setProperty("--d", Math.random() * 2 + 1 + "s");
+
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 3000);
+      }
+
+      function runGrandReveal() {
+        const landing = document.getElementById("landing-page");
+        landing.style.transform = "translateY(-100%)";
+
+        setTimeout(() => {
+          landing.style.display = "none";
+          const overlay = document.getElementById("party-overlay");
+          overlay.style.display = "flex";
+
+          const m1 = document.getElementById("msg-1");
+          m1.classList.add("pop-anim");
+
+          setTimeout(() => {
+            m1.style.display = "none";
+            const m2 = document.getElementById("msg-2");
+            m2.style.display = "block";
+            m2.classList.add("pop-anim");
+
+            setTimeout(() => {
+              overlay.style.opacity = "0";
+              setTimeout(() => {
+                overlay.style.display = "none";
+                const main = document.getElementById("main-content");
+                main.style.display = "block";
+                setTimeout(() => (main.style.opacity = "1"), 100);
+              }, 1000);
+            }, 4500);
+          }, 4500);
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
