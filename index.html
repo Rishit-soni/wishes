@@ -15,6 +15,7 @@
         --gold: #d4af37;
         --cream: #fffaf0;
         --glass: rgba(255, 255, 255, 0.7);
+        --glow: 0 0 20px rgba(255, 63, 108, 0.4);
       }
 
       * {
@@ -43,18 +44,19 @@
         align-items: center;
         text-align: center;
         background: radial-gradient(circle, #fff 0%, #ffeef2 100%);
-        transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+        transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
         padding: 20px;
       }
 
       #quote-display {
         font-family: "Parisienne", cursive;
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 5vw, 2.2rem);
         color: var(--deep-rose);
         min-height: 80px;
         margin-bottom: 30px;
         max-width: 800px;
         padding: 0 20px;
+        line-height: 1.4;
       }
 
       .main-heart-btn {
@@ -74,10 +76,10 @@
         font-size: 1.5rem;
         font-weight: 900;
         margin-top: 30px;
-        box-shadow: 0 10px 25px rgba(255, 63, 108, 0.4);
+        box-shadow: var(--glow);
       }
 
-      /* --- PHASE 2: PARTY OVERLAY --- */
+      /* --- PHASE 2: MAGICAL PARTY OVERLAY --- */
       #party-overlay {
         position: fixed;
         top: 0;
@@ -92,6 +94,7 @@
         align-items: center;
         text-align: center;
         color: white;
+        overflow: hidden;
       }
 
       .party-msg {
@@ -100,8 +103,18 @@
         opacity: 0;
         position: absolute;
         width: 90%;
-        text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        line-height: 1.2;
+        max-width: 800px;
+        text-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        line-height: 1.1;
+        z-index: 10;
+      }
+
+      .party-popper {
+        position: absolute;
+        font-size: 2.5rem;
+        pointer-events: none;
+        z-index: 5;
+        animation: fall linear forwards;
       }
 
       /* --- PHASE 3: MAIN CONTENT --- */
@@ -116,16 +129,15 @@
         padding: 60px 20px 40px;
       }
 
-      /* VIBRANT MODERN NAME STYLE */
       .hero-header h1 {
         font-family: "Great Vibes", cursive;
-        font-size: clamp(3.5rem, 14vw, 7rem);
+        font-size: clamp(3.5rem, 14vw, 7.5rem);
         background: linear-gradient(
           to right,
-          var(--deep-rose) 20%,
-          var(--gold) 40%,
-          #ff8fa3 60%,
-          var(--deep-rose) 80%
+          #c21e56,
+          #d4af37,
+          #ff8fa3,
+          #c21e56
         );
         background-size: 200% auto;
         -webkit-background-clip: text;
@@ -135,55 +147,46 @@
         margin-bottom: 20px;
       }
 
-      @keyframes shine {
-        to {
-          background-position: 200% center;
-        }
-      }
-
-      /* GRAND CALENDAR */
+      /* GRAND MODERN CALENDAR */
       .calendar-container {
-        width: 160px;
-        height: 180px;
+        width: 220px;
+        height: 240px;
         background: white;
-        border-radius: 20px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        margin: 30px auto;
+        border-radius: 25px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        margin: 40px auto;
         overflow: hidden;
-        border: 1px solid #eee;
+        border: 2px solid #fff;
         animation: calFloat 4s ease-in-out infinite;
-        transform: perspective(1000px) rotateX(10deg);
-      }
-
-      @keyframes calFloat {
-        0%,
-        100% {
-          transform: perspective(1000px) rotateX(10deg) translateY(0);
-        }
-        50% {
-          transform: perspective(1000px) rotateX(10deg) translateY(-10px);
-        }
+        transform: perspective(1000px) rotateX(5deg);
       }
 
       .cal-top {
-        background: var(--deep-rose);
+        background: linear-gradient(
+          to right,
+          var(--deep-rose),
+          var(--primary-pink)
+        );
         color: white;
-        padding: 10px;
+        padding: 15px;
         font-weight: 900;
-        letter-spacing: 2px;
+        letter-spacing: 4px;
+        font-size: 1.3rem;
       }
+
       .cal-mid {
-        font-size: 4rem;
+        font-size: 6rem;
         font-weight: 900;
-        color: #222;
+        color: #1a1a1a;
         line-height: 1;
-        padding: 10px 0;
+        padding: 20px 0 10px;
       }
+
       .cal-bot {
-        font-weight: 700;
+        font-weight: 800;
         color: var(--gold);
-        font-size: 1.2rem;
-        padding-bottom: 10px;
+        font-size: 1.5rem;
+        padding-bottom: 20px;
       }
 
       /* 309 WISHES WALL */
@@ -195,14 +198,13 @@
         padding: 60px 20px;
         background: white;
         margin: 40px 0;
-        box-shadow: inset 0 0 50px rgba(255, 63, 108, 0.05);
       }
       .wish-cloud-item {
         display: inline-block;
         animation: float 3s infinite ease-in-out;
       }
 
-      /* PRO JOURNEY SECTION */
+      /* JOURNEY SECTION */
       .journey-container {
         max-width: 1100px;
         margin: 0 auto;
@@ -221,7 +223,6 @@
       .journey-card:nth-child(even) {
         flex-direction: row-reverse;
       }
-
       .journey-visual {
         flex: 1.3;
         overflow: hidden;
@@ -230,10 +231,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: 0.5s;
-      }
-      .journey-visual:hover img {
-        transform: scale(1.08);
       }
 
       .journey-info {
@@ -243,34 +240,46 @@
         flex-direction: column;
         justify-content: center;
       }
+
       .date-badge {
         display: inline-block;
-        background: var(--primary-pink);
+        background: linear-gradient(
+          45deg,
+          var(--deep-rose),
+          var(--primary-pink)
+        );
         color: white;
-        padding: 8px 25px;
+        padding: 10px 30px;
         border-radius: 50px;
         font-weight: 900;
-        margin-bottom: 15px;
-        border: 2px solid white;
-        box-shadow: 0 5px 15px rgba(255, 63, 108, 0.2);
+        margin-bottom: 20px;
+        border: 3px solid white;
+        box-shadow: 0 5px 20px rgba(255, 63, 108, 0.4);
         width: fit-content;
       }
 
-      /* 12 PHOTO GALLERY */
+      /* LOVELY GLIMPSES GRID */
       .glimpses-title {
         text-align: center;
         font-family: "Great Vibes", cursive;
-        font-size: 4.5rem;
-        background: linear-gradient(45deg, var(--deep-rose), var(--gold));
+        font-size: clamp(3rem, 10vw, 5.5rem);
+        background: linear-gradient(
+          45deg,
+          var(--deep-rose),
+          var(--gold),
+          var(--primary-pink)
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin: 80px 0 40px;
+        margin: 120px 0 60px;
+        animation: float 4s infinite ease-in-out;
+        filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.1));
       }
 
       .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
         padding: 20px;
         max-width: 1400px;
         margin: 0 auto;
@@ -281,18 +290,26 @@
         padding: 15px 15px 80px 15px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         transform: rotate(var(--r));
-        transition: 0.4s;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         position: relative;
       }
       .polaroid-frame:hover {
         transform: rotate(0deg) scale(1.05);
         z-index: 10;
       }
+
       .polaroid-frame img {
         width: 100%;
-        height: 380px;
-        object-fit: cover;
+        height: 400px;
+        object-fit: cover; /* Default for most images */
       }
+
+      /* FIXED: PORTRAIT IMAGE ISSUE */
+      .portrait-fix {
+        object-fit: contain !important;
+        background-color: #fcfcfc;
+      }
+
       .polaroid-frame .caption {
         position: absolute;
         bottom: 20px;
@@ -301,36 +318,47 @@
         text-align: center;
         font-family: "Sacramento", cursive;
         font-size: 2.2rem;
+        color: #333;
       }
 
-      /* CAREER SUCCESS SECTION */
+      /* CAREER SUCCESS */
       .career-section {
-        background: linear-gradient(to right, #fff, #fff1f2, #fff);
-        padding: 100px 20px;
+        background: linear-gradient(135deg, #fffaf0 0%, #fff1f2 100%);
+        padding: 120px 20px;
         text-align: center;
       }
       .success-card {
         max-width: 850px;
         margin: 0 auto;
         background: white;
-        padding: 50px;
+        padding: 60px;
         border-radius: 40px;
-        box-shadow: 0 30px 60px rgba(194, 30, 86, 0.1);
+        box-shadow: 0 40px 80px rgba(194, 30, 86, 0.15);
+        border: 1px solid rgba(255, 63, 108, 0.1);
       }
       .success-card h2 {
         font-family: "Playfair Display", serif;
-        font-size: 2.8rem;
+        font-size: 3rem;
         color: var(--deep-rose);
-        margin-bottom: 25px;
+        margin-bottom: 30px;
+        background: linear-gradient(to right, var(--deep-rose), var(--gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       .success-card p {
-        font-size: 1.3rem;
-        line-height: 1.8;
-        color: #555;
-        margin-bottom: 20px;
+        font-size: 1.4rem;
+        line-height: 1.9;
+        color: #444;
+        margin-bottom: 25px;
+        font-weight: 500;
       }
 
-      /* --- ANIMATIONS --- */
+      /* KEYFRAME ANIMATIONS */
+      @keyframes shine {
+        to {
+          background-position: 200% center;
+        }
+      }
       @keyframes pulse {
         0%,
         100% {
@@ -346,7 +374,22 @@
           transform: translateY(0);
         }
         50% {
-          transform: translateY(-10px);
+          transform: translateY(-15px);
+        }
+      }
+      @keyframes calFloat {
+        0%,
+        100% {
+          transform: perspective(1000px) rotateX(5deg) translateY(0);
+        }
+        50% {
+          transform: perspective(1000px) rotateX(5deg) translateY(-20px);
+        }
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0;
         }
       }
 
@@ -396,7 +439,7 @@
           min-height: auto;
         }
         .journey-visual {
-          height: 300px;
+          height: 320px;
         }
         .journey-info {
           padding: 30px;
@@ -406,10 +449,14 @@
           font-size: 3.8rem;
         }
         .party-msg {
-          font-size: clamp(2rem, 10vw, 3.5rem) !important;
+          font-size: clamp(2.2rem, 10vw, 3.8rem) !important;
+          padding: 10px;
         }
         .success-card {
-          padding: 30px;
+          padding: 40px 20px;
+        }
+        .success-card h2 {
+          font-size: 2.2rem;
         }
       }
     </style>
@@ -427,19 +474,16 @@
           font-weight: 800;
           color: var(--deep-rose);
           letter-spacing: 2px;
+          text-transform: uppercase;
         "
       >
-        A SPECIAL JOURNEY FOR MY FIANCÉ
+        A Special Journey for My Fiancé
       </p>
     </div>
 
     <div id="party-overlay">
-      <h1 id="msg-1" class="party-msg" style="font-size: 3.5rem">
-        FINALLY, IT'S 9th JAN 2026...
-      </h1>
-      <h1 id="msg-2" class="party-msg" style="font-size: 5.5rem">
-        HAPPY BIRTHDAY<br />DEVANSHI! 🎂✨
-      </h1>
+      <h1 id="msg-1" class="party-msg">FINALLY, IT'S 9th JAN 2026...</h1>
+      <h1 id="msg-2" class="party-msg">HAPPY BIRTHDAY<br />DEVANSHI! 🎂✨</h1>
     </div>
 
     <div id="main-content">
@@ -520,7 +564,7 @@
         </div>
       </div>
 
-      <h2 class="glimpses-title">Lovely Glimpses</h2>
+      <h2 class="glimpses-title">Lovely Glimpses 📸</h2>
       <div class="gallery-grid">
         <div class="polaroid-frame" style="--r: -3deg">
           <img src="IMG_20260107_203945.jpg" />
@@ -539,7 +583,7 @@
           <div class="caption">Memories 🕊️</div>
         </div>
         <div class="polaroid-frame" style="--r: -2deg">
-          <img src="world.jpg" />
+          <img src="world.jpg" class="portrait-fix" />
           <div class="caption">Whole World 🌎</div>
         </div>
         <div class="polaroid-frame" style="--r: 4deg">
@@ -581,10 +625,11 @@
             and I know you have the strength to achieve them all! 🎯✨
           </p>
           <p>
-            In every situation, through every high and low, I will be right here
-            by your side 🤝. May you shine brighter than the stars and reach the
-            heights you deserve. 💼📈
+            In every situation, through every high and low, I will always be
+            right by your side 🤝. May you shine brighter than the stars and
+            reach the massive heights you deserve. 💼📈
           </p>
+          <div style="font-size: 3rem; margin-top: 20px">🧗‍♀️ 🏆 🌈</div>
         </div>
       </section>
 
@@ -593,7 +638,7 @@
           text-align: center;
           padding: 120px 20px;
           font-family: 'Parisienne';
-          font-size: 3rem;
+          font-size: 3.2rem;
           color: var(--deep-rose);
         "
       >
@@ -631,6 +676,7 @@
         "Happy Birthday, Devanshi! I love you! ❤️",
       ];
 
+      // Wishes Wall Generator
       const variations = [
         "Happy Birthday",
         "જન્મદિવસ મુબારક",
@@ -668,7 +714,7 @@
           loveSentences[clicks - 1]
         }"`;
 
-        // INTENSE CELEBRATION RAIN
+        // MASSIVE RAIN ON EACH CLICK
         for (let i = 0; i < 35; i++) {
           createParticle(e.clientX, e.clientY);
         }
@@ -700,6 +746,20 @@
           landing.style.display = "none";
           const overlay = document.getElementById("party-overlay");
           overlay.style.display = "flex";
+
+          // CONTINUOUS POPS IN PHASE 2
+          const popperInterval = setInterval(() => {
+            const emojis = ["🥳", "🎂", "🎉", "🎊", "✨", "💎", "🎁"];
+            const p = document.createElement("div");
+            p.className = "party-popper";
+            p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.top = "-10vh";
+            p.style.animationDuration = Math.random() * 3 + 2.5 + "s";
+            overlay.appendChild(p);
+            setTimeout(() => p.remove(), 5500);
+          }, 120);
+
           const m1 = document.getElementById("msg-1");
           m1.classList.add("pop-anim");
           setTimeout(() => {
@@ -709,15 +769,16 @@
             m2.classList.add("pop-anim");
             setTimeout(() => {
               overlay.style.opacity = "0";
+              clearInterval(popperInterval);
               setTimeout(() => {
                 overlay.style.display = "none";
                 const main = document.getElementById("main-content");
                 main.style.display = "block";
                 setTimeout(() => (main.style.opacity = "1"), 100);
               }, 1000);
-            }, 4500);
-          }, 4500);
-        }, 1000);
+            }, 5500);
+          }, 5500);
+        }, 1200);
       }
     </script>
   </body>
